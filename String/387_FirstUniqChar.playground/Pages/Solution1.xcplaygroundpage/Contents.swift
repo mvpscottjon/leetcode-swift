@@ -1,8 +1,6 @@
 /*
  Q. 387
- Given an integer array nums, move all the even integers at the beginning of the array followed by all the odd integers.
-
- Return any array that satisfies this condition.
+    Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
  
  ***RESULTS:
  Runtime: 76 ms, faster than 92.39% of Swift online submissions for First Unique Character in a String.
@@ -11,7 +9,7 @@
 
 func firstUniqChar(_ s: String) -> Int {
     let stringArray = Array(s)
-    var dict : [Character: Int] = [:]
+    var dict: [Character: Int] = [:]
     
     for i in 0...stringArray.count-1 {
         let targetString = stringArray[i]

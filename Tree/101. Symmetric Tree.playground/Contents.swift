@@ -25,22 +25,23 @@ public class TreeNode {
 func isSymmetric(_ root: TreeNode?) -> Bool {
     guard root != nil else { return true}
     
-    return isSymmetricHelper(root?.left, root?.right)
+    return help(left: root?.left, right: root?.right)
 }
 
-func isSymmetricHelper(_ left: TreeNode?, _ right: TreeNode?) -> Bool{
+func help(left: TreeNode?, right: TreeNode?) -> Bool {
     guard left != nil || right != nil else { return true}
-    
+
     if left?.val == right?.val {
-        return isSymmetricHelper(left?.left, right?.right) && isSymmetricHelper(left?.right, right?.left)
+        return help(left: left?.left, right: right?.right) && help(left: left?.right, right: right?.left)
     } else {
         return false
     }
 }
+ 
 
 let tree3 = TreeNode(3)
 let tree2 = TreeNode(2)
-let tree1 = TreeNode(1, tree2, tree3)
+let tree1 = TreeNode(1, tree2, tree2)
 
 
 isSymmetric(tree1)

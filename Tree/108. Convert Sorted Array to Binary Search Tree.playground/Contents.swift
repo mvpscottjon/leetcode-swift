@@ -1,0 +1,47 @@
+/*
+ QUESTION:
+     Given an integer array nums where the elements are sorted in ascending order, convert it to a height-balanced binary search tree.
+
+     A height-balanced binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.
+ RESULT:
+     Runtime: 23 ms, faster than 56.94% of Swift online submissions for Convert Sorted Array to Binary Search Tree.
+     Memory Usage: 14.9 MB, less than 60.19% of Swift online submissions for Convert Sorted Array to Binary Search Tree.
+ NOTE:
+    Need more practice.
+ */
+
+public class TreeNode {
+    public var val: Int
+    public var left: TreeNode?
+    public var right: TreeNode?
+    public init() { self.val = 0; self.left = nil; self.right = nil; }
+    public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+    public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+        self.val = val
+        self.left = left
+        self.right = right
+    }
+}
+
+class Solution {
+    func sortedArrayToBST(_ nums: [Int]) -> TreeNode? {
+        print((3 - 0) / 2 + 0)
+        return helper(arr: nums, 0, nums.count - 1)
+    }
+    
+    func helper(arr: [Int], _ left: Int, _ right: Int) -> TreeNode? {
+        guard left <= right else { return nil }
+        
+        let mid = (right - left) / 2 + left
+        let root = TreeNode(arr[mid])
+        
+        root.left = helper(arr: arr, left, mid - 1)
+        root.right = helper(arr: arr, mid + 1, right)
+        
+        return root
+    }
+}
+
+//Output: [0,-3,9,-10,null,5]
+//Explanation: [0,-10,5,null,-3,null,9] is also accepted:
+Solution().sortedArrayToBST([-10,-3,0,5,9])

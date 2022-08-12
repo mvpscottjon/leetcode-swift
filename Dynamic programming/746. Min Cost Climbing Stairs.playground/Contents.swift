@@ -13,28 +13,19 @@
 class Solution {
     func minCostClimbingStairs(_ cost: [Int]) -> Int {
         let n = cost.count
-        
-        if n == 0 {
-            return 0
-        }
 
-        if n == 1 {
-            return cost[0]
-        }
-        
-        if n == 2 {
-            return min(cost[0], cost[1])
-        }
-
-        var minDP = Array(repeating: Int.max, count: n)
+        var minDP = Array(repeating: Int.max, count: n + 1)
         minDP[0] = cost[0]
         minDP[1] = cost[1]
-    
         
-        for i in 2...n-1 {
-            minDP[i] = min(minDP[i - 1],minDP[i - 2]) + cost[i]
+        for i in 2...n {
+            if i == n {
+                minDP[i] = min(minDP[i - 1],minDP[i - 2])
+            } else {
+                minDP[i] = min(minDP[i - 1],minDP[i - 2]) + cost[i]
+            }
         }
-                
+        
         return min(minDP[n-1], minDP[n-2])
     }
 }
